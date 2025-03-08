@@ -9,22 +9,25 @@ Repositório das aulas de Programação Web III, lecionadas pelos professores Da
 
 <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/php/php-original.svg" height = "40"/>
           
-## 💾 Como executar o programa
+## 🛠️ Como executar o programa
 
-- Passo 1: Copie o link do repositório
+- Passo 1: Copie o link do repositório ***(clique em "Code")***
 <img src = "img/Passo1.jpg">
 <img src = "img/Passo2.jpg">
 
-- Passo 2: Utilize o seu software de preferência <a href = "https://www.apachefriends.org/pt_br/index.html"> (Xampp </a> utilizado nos exemplos) e inicie o servidor **Apache**
+- Passo 2: Utilizando o <a href = "https://www.apachefriends.org/pt_br/index.html">Xampp</a>, inicie o servidor **Apache *(clique em "Start")***
 <img src = "img/Passo3.jpg">
 
-- Passo 3: Abra a pasta **"htdocs" (atalho no botão "Explorer" no Xampp)** e, com o terminal, clone o repositório
+- Passo 3: Abra a pasta **"htdocs" (atalho no botão "Explorer")**
 <img src = "img/Passo4.jpg">
 <img src = "img/Passo5.jpg">
 
+- Passo 4: **Abra a pasta com o Terminal** *(clique com o botão direito)* e clone o repositório ***(cole o código abaixo)*** 
+<img src = "img/Passo4_1.jpg">
+
 ```COLE O CÓDIGO: git clone https://github.com/possatogabriel/PWIII-Gabriel-Possato.git```
 
-- Passo 4: Veja os arquivos pelo **"localhost"** no seu navegador de preferência 
+- Passo 5: Agora, **no seu navegador de preferência,** abra a pasta do repositório ***(cole o código abaixo na barra de navegação)***
 <img src = "img/Passo6.jpg">
 
 ```COLE O CÓDIGO: localhost//PWIII-Gabriel-Possato```
