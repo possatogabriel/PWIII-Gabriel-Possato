@@ -1,12 +1,27 @@
-<?php
+<html>
+<head>
+    <title> Exercício 6 </title>
+</head>
+<body>
+    <form action = "./Exercício6.php" method = "POST">
+        <h1> Calcule o desconto de um produto </h1>
+        <input type = "number" name = "valor" placeholder = "Digite o valor"> <br>
+        <input type = "submit" name = "enviar" value = "Enviar">
 
-$valorProduto = 59.99;
-$valorDesconto = $valorProduto * 0.07;
-$valorComDesconto = $valorProduto - $valorDesconto;
+      <?php
 
-echo "VALOR ORIGINAL: $valorProduto </br>";
-echo "</br>";
-echo "VALOR DO DESCONTO: $valorDesconto </br>";
-echo "</br>";
-echo "VALOR COM DESCONTO: $valorComDesconto </br>";
-?>
+          if(isset($_POST['enviar'])){
+            $valor = $_POST['valor'];
+
+            $desconto = $valor * 0.07;
+
+            $valorComDesconto = $valor - $desconto;
+            
+            echo "<p> VALOR DO DESCONTO: R$ $desconto </p>";
+            echo "<p> VALOR COM DESCONTO: R$ $valorComDesconto </p>";
+          }
+        ?>
+
+      </form>
+</body>
+</html>

@@ -1,14 +1,23 @@
-<?php
+<html>
+  <head>
+    <title> Exercicio 2 </title>
+  </head>
+  <body>
+      <form action = "./Exercício2.php" method = "POST">
+        <h1> Descubra o desconto de 27% de um valor </h1>
+        <input type = "number" name = "valor" placeholder = "Digite o valor"> <br>
+        <input type = "submit" name = "enviar" value = "Enviar">
 
-$valor = 100;
+      <?php
 
-$porcentagem = $valor * 0.27;
+          if(isset($_POST['enviar'])){
+            $valor = $_POST["valor"];
 
-$desconto = $valor - $porcentagem;
+            $valorComDesconto = $valor - ($valor * 0.27);
+            echo "<p> VALOR COM 27% DE DESCONTO: R$ $valorComDesconto </p>";
+          }
+        ?>
 
-echo "VALOR: $valor </br>";
-echo "</br>";
-echo "27% DO VALOR: $porcentagem </br>";
-echo "</br>";
-echo "VALOR COM DESCONTO: $desconto";
-?>
+      </form>
+  </body>
+</html>

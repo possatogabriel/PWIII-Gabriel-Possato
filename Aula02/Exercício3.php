@@ -1,15 +1,25 @@
-<?php
+<html>
+  <head>
+    <title> Exercicio 3 </title>
+  </head>
+  <body>
+      <form action = "./Exercício3.php" method = "POST">
+        <h1> Descubra um valor 16% mais caro e parcelado </h1>
+        <input type = "number" name = "valor" placeholder = "Digite o valor"> <br>
+        <input type = "submit" name = "enviar" value = "Enviar">
 
-$valor = 100;
+      <?php
 
-$porcentagem = $valor * 0.16;
+          if(isset($_POST['enviar'])){
+            $valor = $_POST["valor"];
 
-$valorFinal = $valor + $porcentagem;
-$valorParcela = $valorFinal / 10;
+            $valorTotal = $valor + ($valor * 0.16);
+            $valorParcelas = $valorTotal / 10;
+            echo "<p> VALOR TOTAL: R$ $valorTotal </p>";
+            echo "<p> VALOR DAS PARCELAS (10x): R$ $valorParcelas </p>";
+          }
+        ?>
 
-echo "VALOR: $valor </br>";
-echo "</br>";
-echo "VALOR FINAL: $valorFinal </br>";
-echo "</br>";
-echo "VALOR PARCELADO: $valorParcela";
-?>
+      </form>
+  </body>
+</html>
