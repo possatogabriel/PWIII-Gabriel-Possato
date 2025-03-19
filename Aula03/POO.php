@@ -1,5 +1,6 @@
 <?php
 echo "<h1> Programação Orientada a Objetos </h1>";
+echo "<h2> Por: Gabriel Possato e Shara </h2>";
 
 // Classe Pessoa
 class Pessoa {
