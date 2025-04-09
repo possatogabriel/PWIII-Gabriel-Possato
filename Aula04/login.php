@@ -15,6 +15,7 @@
         
         <input type="submit" value="Entrar" id="entrar" name="entrar"> <br>
         <a href="cadastro.php">Cadastre-se</a>
+        <a href="recuperacao.php"> Esqueceu sua senha? </a>
     </form>
 </body>
 </html>

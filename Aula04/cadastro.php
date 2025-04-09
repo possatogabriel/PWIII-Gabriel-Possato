@@ -8,8 +8,15 @@
 </head>
 <body>
     <form action="cadastro.php" method="POST">
+
+        <label for="nome">Nome:</label> <br>
+        <input type="text" id="nome" name="nome" required> <br> <br>
+
         <label for="email">E-mail:</label> <br>
         <input type="email" id="email" name="email" required> <br> <br>
+
+        <label for="email_recuperacao">E-mail de Recuperação:</label> <br>
+        <input type="email" id="email_recuperacao" name="email_recuperacao" required> <br> <br>
 
         <label for="senha">Senha:</label> <br>
         <input type="password" id="senha" name="senha" required> <br> <br>
@@ -25,8 +32,11 @@ include_once("config.php"); // Inclua o arquivo de configuração do banco de da
 
 if (isset($_POST["submit"])) {
     // Sanitização das entradas
+    $nome = mysqli_real_escape_string($conexao, $_POST["nome"]);
     $email = mysqli_real_escape_string($conexao, $_POST["email"]);
+    $emailRecuperacao = mysqli_real_escape_string($conexao, $_POST["email_recuperacao"]);
     $senha = mysqli_real_escape_string($conexao, $_POST["senha"]);
+    $data_cad = date('Y/m/d');
 
     // Hash da senha para segurança
     $senhaHash = password_hash($senha, PASSWORD_DEFAULT);
@@ -42,8 +52,8 @@ if (isset($_POST["submit"])) {
         exit();
     }
 
-    // Insere o novo usuário no banco de dados
-    $enviar = mysqli_query($conexao, "INSERT INTO usuarios (email, senha) VALUES ('$email', '$senhaHash')");
+    // Insere o novo usuário no banco de dados com as novas informações
+    $enviar = mysqli_query($conexao, "INSERT INTO usuarios (nome, email, email_recup, senha, data_cad) VALUES ('$nome', '$email', '$emailRecuperacao', '$senhaHash', '$data_cad')");
 
     if ($enviar) {
         echo 
@@ -61,3 +71,4 @@ if (isset($_POST["submit"])) {
 }
 
 ?>
+
