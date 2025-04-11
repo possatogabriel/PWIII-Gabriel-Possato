@@ -4,6 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login</title>
+    <!-- Incluindo o arquivo CSS -->
+    <link rel="stylesheet" href="style/login.css">
 </head>
 <body>
     <form method="POST" action="login.php">
@@ -21,47 +23,44 @@
 </html>
 
 <?php
+include_once("config.php"); // Inclui a configuração do banco de dados
 
-include_once("config.php"); // Inclua o arquivo de configuração do banco de dados
+if (isset($_POST['entrar'])) {
+    // Obter dados do formulário
+    $email = mysqli_real_escape_string($conexao, $_POST['email']);
+    $senha = $_POST['senha'];
 
-if (isset($_POST["entrar"])) {
-    // Sanitização das entradas para evitar SQL Injection
-    $email = mysqli_real_escape_string($conexao, $_POST["email"]);
-    $senha = mysqli_real_escape_string($conexao, $_POST["senha"]);
-
-    // Consulta ao banco de dados
-    $consulta = mysqli_query($conexao, "SELECT * FROM usuarios WHERE email = '$email'");
-
-    if (!$consulta) {
-        die("Erro ao fazer a consulta no banco: " . mysqli_error($conexao));
+    // Validação do comprimento da senha
+    if (strlen($senha) > 8) {
+        echo "Erro: A senha não pode ter mais de 8 caracteres.<br>";
+        exit();
     }
 
-    if (mysqli_num_rows($consulta) > 0) {
-        // Verificar a senha com hash
+    // Verificar o e-mail no banco de dados
+    $consulta = mysqli_query($conexao, "SELECT * FROM usuarios WHERE email = '$email'");
+
+    if ($consulta && mysqli_num_rows($consulta) > 0) {
+        // Validar a senha
         $usuario = mysqli_fetch_assoc($consulta);
-        if (password_verify($senha, $usuario["senha"])) {
-            // Login bem-sucedido, criar cookie e redirecionar
+        if (password_verify($senha, $usuario['senha'])) {
+            // Login bem-sucedido
             setcookie("login", $email, time() + (86400 * 30), "/"); // Cookie válido por 30 dias
             header("Location: index.php");
             exit();
         } else {
-            // Senha incorreta
-            echo 
-            "<script type='text/javascript'> 
-                alert('Senha incorreta!');
-                window.location.href = 'login.php';
-            </script>";
+            echo "<script type='text/javascript'>
+                    alert('Senha incorreta!');
+                    window.location.href = 'login.php';
+                  </script>";
             exit();
         }
     } else {
-        // Usuário não encontrado
-        echo 
-        "<script type='text/javascript'> 
-            alert('Usuário não encontrado!');
-            window.location.href = 'cadastro.php';
-        </script>";
+        echo "<script type='text/javascript'>
+                alert('Usuário não encontrado!');
+                window.location.href = 'cadastro.php';
+              </script>";
         exit();
     }
 }
-
 ?>
+

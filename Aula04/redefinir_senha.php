@@ -4,6 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Redefinir Senha</title>
+    <!-- Incluindo o arquivo CSS -->
+    <link rel="stylesheet" href="style/redefinir_senha.css">
 </head>
 <body>
     <h1>Redefinir Senha</h1>
@@ -23,17 +25,25 @@
 </html>
 
 <?php
-session_start(); // Iniciar sessão para acessar dados armazenados
+session_start(); // Iniciar a sessão para acessar dados armazenados
 include_once("config.php"); // Inclua o arquivo de configuração do banco de dados
+
+// Verificar se o e-mail principal está na sessão
+if (!isset($_SESSION['email_principal'])) {
+    echo "Erro: Nenhum e-mail principal foi encontrado.<br>";
+    echo "<a href='recuperacao.php'>Voltar para a página de recuperação.</a>";
+    exit();
+}
 
 if (isset($_POST['alterar_senha'])) {
     $nova_senha = $_POST['nova_senha'];
     $confirmar_senha = $_POST['confirmar_senha'];
-    $email_recuperacao = $_SESSION['email_recuperacao']; // Obtenha o e-mail salvo na sessão
+    $email_principal = $_SESSION['email_principal']; // Obtenha o e-mail principal salvo na sessão
 
     // Verificar se as senhas correspondem
     if ($nova_senha !== $confirmar_senha) {
-        echo "As senhas não correspondem. Tente novamente.";
+        echo "As senhas não correspondem. Tente novamente.<br>";
+        echo "<a href='redefinir_senha.php'>Voltar para tentar novamente.</a>";
         exit();
     }
 
@@ -41,13 +51,13 @@ if (isset($_POST['alterar_senha'])) {
     $nova_senha_hash = password_hash($nova_senha, PASSWORD_DEFAULT);
 
     // Atualizar senha no banco de dados
-    $atualizar = mysqli_query($conexao, "UPDATE usuarios SET senha = '$nova_senha_hash' WHERE email = '$email_recuperacao'");
+    $atualizar = mysqli_query($conexao, "UPDATE usuarios SET senha = '$nova_senha_hash' WHERE email = '$email_principal'");
 
     if ($atualizar) {
         echo "Senha alterada com sucesso!<br>";
         echo "<a href='login.php'>Clique aqui para fazer login.</a>";
     } else {
-        echo "Erro ao alterar a senha. Tente novamente.";
+        echo "Erro ao alterar a senha. Tente novamente.<br>";
     }
 }
 ?>
