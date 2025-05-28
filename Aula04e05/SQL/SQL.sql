@@ -1,5 +1,18 @@
-CREATE DATABASE IF NOT EXISTS loja_db;
-USE loja_db;
+CREATE DATABASE IF NOT EXISTS pwiii_db;
+USE pwiii_db;
+
+CREATE TABLE usuarios(
+	id bigint not null auto_increment,
+    nome varchar(40),
+    email varchar(40) not null unique,
+    email_recup varchar(40) not null unique,
+    senha varchar(255) not null,
+    data_cad date not null,
+    ativo enum('true', 'false') not null,
+    nivel int not null,
+    
+    primary key (id)
+);
 
 -- PRODUTOS --
 CREATE TABLE produtos (
@@ -18,7 +31,7 @@ CREATE TABLE produtos (
    usuario_alt VARCHAR(20)
 );
 
--- CLIENTEs --
+-- CLIENTES --
 CREATE TABLE clientes (
     id_cliente INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
     nome varchar(30),
@@ -121,6 +134,9 @@ INSERT INTO pedido_detalhe (codprod, valor, qtde, ipi, datped, numped) VALUES (5
 SELECT * FROM pedido_detalhe;
 
 -- DICAS --
+
+-- SELECT * FROM usuarios;
+-- DROP TABLE usuarios;
 
 -- ALTER TABLE cliente MODIFY COLUMN cep VARCHAR(8);
 -- DELETE FROM PEDIDO; 
