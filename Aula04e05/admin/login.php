@@ -16,14 +16,15 @@
         <input type="password" name="senha" id="senha" required> <br>
         
         <input type="submit" value="Entrar" id="entrar" name="entrar"> <br>
-        <a href="cadastro.php">Cadastre-se</a>
-        <a href="recuperacao.php"> Esqueceu sua senha? </a>
+        <a href="./cadastro.php"> Cadastre-se </a>
+        <a href="./recuperacao.php"> Esqueceu sua senha? </a>
     </form>
 </body>
 </html>
 
 <?php
-include_once("config.php"); // Inclui a configuração do banco de dados
+include_once("../config/config.php"); // Inclui a configuração do banco de dados
+include_once("../config/auto_cadastro.php"); // Cadastra automaticamente o usuário Gabriel, se não existir
 
 if (isset($_POST['entrar'])) {
     // Obter dados do formulário
@@ -45,7 +46,7 @@ if (isset($_POST['entrar'])) {
         if (password_verify($senha, $usuario['senha'])) {
             // Login bem-sucedido
             setcookie("login", $email, time() + (86400 * 30), "/"); // Cookie válido por 30 dias
-            header("Location: index.php");
+            header("Location: ../index.php");
             exit();
         } else {
             echo "<script type='text/javascript'>

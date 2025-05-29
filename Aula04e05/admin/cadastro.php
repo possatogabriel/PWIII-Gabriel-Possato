@@ -1,5 +1,5 @@
 <?php
-include_once("config.php"); // Inclui a configuração do banco de dados
+include_once("../config/config.php"); // Inclui a configuração do banco de dados
 
 // Inicializar a variável de resposta
 $resposta = "";
@@ -29,7 +29,7 @@ if (isset($_POST['submit'])) {
         
         if (mysqli_query($conexao, $query)) {
             $resposta = "<div class='success-message'>Usuário cadastrado com sucesso!<br>
-                         <a href='login.php'>Clique aqui para fazer login.</a></div>";
+                         <a href='./login.php'>Clique aqui para fazer login.</a></div>";
         } else {
             $resposta = "<div class='error-message'>Erro ao cadastrar o usuário: " . mysqli_error($conexao) . "</div>";
         }
@@ -46,7 +46,7 @@ if (isset($_POST['submit'])) {
     <link rel="stylesheet" href="style/cadastro.css"> <!-- Inclua o CSS -->
 </head>
 <body>
-    <form action="cadastro.php" method="POST">
+    <form action="./cadastro.php" method="POST">
         <label for="nome">Nome:</label> <br>
         <input type="text" id="nome" name="nome" required> <br> <br>
 

@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="style/recuperacao.css">
 </head>
 <body>
-    <form action="recuperacao.php" method="POST">
+    <form action="./recuperacao.php" method="POST">
         <!-- Campo para e-mail de recuperação -->
         <label for="email_recuperacao">E-mail de Recuperação:</label> <br>
         <input type="email" id="email_recuperacao" name="email_recuperacao" required> <br> <br>
@@ -17,7 +17,7 @@
         <button type="submit" name="enviar_codigo">Gerar Código</button> <br> <br>
     </form>
 
-    <form action="validar_codigo.php" method="POST">
+    <form action="./validar_codigo.php" method="POST">
         <!-- Campo para inserir o código recebido -->
         <label for="codigo">Código:</label> <br>
         <input type="text" id="codigo" name="codigo" required> <br> <br>
@@ -30,7 +30,7 @@
 
 <?php
 session_start(); // Iniciar a sessão para armazenar dados temporários
-include_once("config.php"); // Inclua o arquivo de configuração do banco de dados
+include_once("../config/config.php"); // Inclua o arquivo de configuração do banco de dados
 
 if (isset($_POST['enviar_codigo'])) {
     // Obter o e-mail de recuperação inserido pelo usuário
@@ -59,7 +59,7 @@ if (isset($_POST['enviar_codigo'])) {
     } else {
         // E-mail de recuperação não encontrado
         echo "O e-mail de recuperação inserido não está registrado no sistema.<br>";
-        echo "<a href='recuperacao.php'>Voltar para a página de recuperação.</a>";
+        echo "<a href='./recuperacao.php'>Voltar para a página de recuperação.</a>";
     }
 }
 ?>

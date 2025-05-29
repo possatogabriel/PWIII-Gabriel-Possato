@@ -9,7 +9,7 @@
 </head>
 <body>
     <h1>Redefinir Senha</h1>
-    <form action="redefinir_senha.php" method="POST">
+    <form action="./redefinir_senha.php" method="POST">
         <!-- Campo para nova senha -->
         <label for="nova_senha">Nova Senha:</label> <br>
         <input type="password" id="nova_senha" name="nova_senha" required> <br> <br>
@@ -26,12 +26,12 @@
 
 <?php
 session_start(); // Iniciar a sessão para acessar dados armazenados
-include_once("config.php"); // Inclua o arquivo de configuração do banco de dados
+include_once("../config/config.php"); // Inclua o arquivo de configuração do banco de dados
 
 // Verificar se o e-mail principal está na sessão
 if (!isset($_SESSION['email_principal'])) {
     echo "Erro: Nenhum e-mail principal foi encontrado.<br>";
-    echo "<a href='recuperacao.php'>Voltar para a página de recuperação.</a>";
+    echo "<a href='./recuperacao.php'>Voltar para a página de recuperação.</a>";
     exit();
 }
 
@@ -43,7 +43,7 @@ if (isset($_POST['alterar_senha'])) {
     // Verificar se as senhas correspondem
     if ($nova_senha !== $confirmar_senha) {
         echo "As senhas não correspondem. Tente novamente.<br>";
-        echo "<a href='redefinir_senha.php'>Voltar para tentar novamente.</a>";
+        echo "<a href='./redefinir_senha.php'>Voltar para tentar novamente.</a>";
         exit();
     }
 
@@ -55,7 +55,7 @@ if (isset($_POST['alterar_senha'])) {
 
     if ($atualizar) {
         echo "Senha alterada com sucesso!<br>";
-        echo "<a href='login.php'>Clique aqui para fazer login.</a>";
+        echo "<a href='./login.php'>Clique aqui para fazer login.</a>";
     } else {
         echo "Erro ao alterar a senha. Tente novamente.<br>";
     }

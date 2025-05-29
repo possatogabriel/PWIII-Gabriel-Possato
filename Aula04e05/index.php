@@ -10,7 +10,7 @@
 <body>
     <div class="container">
         <?php
-        include_once("config.php"); // Inclui o arquivo de configuração do banco de dados
+        include_once("config/config.php"); // Inclui o arquivo de configuração do banco de dados
 
         // Verifica se o cookie de login existe
         $login_cookie = isset($_COOKIE["login"]) ? $_COOKIE["login"] : null;
@@ -24,25 +24,26 @@
                 $nome = htmlspecialchars($usuario["nome"]); // Nome do usuário
 
                 // Exibe boas-vindas ao usuário
-                echo "<p>Bem-Vindo, $nome </p>"; 
+                echo "<p> Bem-Vindo, $nome! </p>"; 
                 echo "<p> Você <font color='green'>PODE</font> acessar as informações.</p>";
 
                 // Botões CRUD + Cadastro de Cliente + Logout
                 echo "<div class='buttons'>";
-                echo "<a href='criar.php'><button>Criar Usuário</button></a>";
-                echo "<a href='listar.php'><button>Listar Usuários</button></a>";
-                echo "<a href='atualizar.php'><button>Atualizar Usuário</button></a>";
-                echo "<a href='deletar.php'><button>Deletar Usuário</button></a>";
-                echo "<a href='logout.php'><button class='logout-btn'>Logout</button></a>";
+                echo "<a href='./client/criar.php'><button>Criar Usuário</button></a>";
+                echo "<a href='./client/listar.php'><button>Listar Usuários</button></a>";
+                echo "<a href='./client/atualizar.php'><button>Atualizar Usuário</button></a>";
+                echo "<a href='./client/deletar.php'><button>Deletar Usuário</button></a>";
+                echo "<a href='./client/logout.php'><button class='logout-btn'>Logout</button></a>";
                 echo "</div>";
             } else {
                 // Cookie inválido ou usuário não encontrado
-                echo "<p>Cookie inválido ou expirado. <a href='login.php'>Faça Login</a> novamente.</p>";
+                echo "<p>Cookie inválido ou expirado. <a href='admin/login.php'>Faça Login</a> novamente.</p>";
             }
         } else {
             // Cookie não existe
-            echo "<p>Bem-Vindo, convidado | <font color='red'>NÃO PODE</font> acessar as informações.</p>";
-            echo "<a href='login.php'>Faça Login</a> para ler o conteúdo.";
+            echo "<p>Bem-Vindo, convidado! </p>"; 
+            echo "<p> Você <font color='red'>NÃO PODE</font> acessar as informações.</p>";
+            echo "<a href='admin/login.php'>Faça Login</a> para ler o conteúdo.";
         }
         ?>
     </div>
