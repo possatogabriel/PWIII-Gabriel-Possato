@@ -4,7 +4,7 @@
 $hostname = "localhost";
 $bancodedados = "pwiii_db";
 $usuario = "root";
-$senha = "root";
+$senha = "";
 
 // Conexão com o banco de dados
 $conexao = new mysqli($hostname, $usuario, $senha, $bancodedados);
