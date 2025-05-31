@@ -3,16 +3,44 @@ CREATE DATABASE IF NOT EXISTS pwiii_db;
 USE pwiii_db;
 
 CREATE TABLE usuarios(
-	id bigint not null auto_increment,
-    nome varchar(40),
-    email varchar(40) not null unique,
-    email_recup varchar(40) not null unique,
-    senha varchar(255) not null,
-    data_cad date not null,
-    ativo enum('true', 'false') not null,
-    nivel int not null,
+    id BIGINT NOT NULL AUTO_INCREMENT,
+    nome VARCHAR(40),
+    email VARCHAR(40) NOT NULL UNIQUE,
+    email_recup VARCHAR(40) NOT NULL UNIQUE,
+    senha VARCHAR(255) NOT NULL,
+    data_cad DATETIME NOT NULL,
+    data_alt DATETIME NOT NULL, 
+    ativo ENUM('true', 'false') NOT NULL,
+    nivel INT NOT NULL,
     
-    primary key (id)
+    PRIMARY KEY (id)
+);
+
+-- VENDEDORES --
+CREATE TABLE vendedores (
+    id_vendedor INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    id_usuario BIGINT NOT NULL UNIQUE, 
+    celular VARCHAR(30),
+    atuacao VARCHAR(2),
+    comissao DOUBLE(7,2),
+
+    FOREIGN KEY (id_usuario) REFERENCES usuarios(id) ON DELETE CASCADE
+);
+
+-- CLIENTES --
+CREATE TABLE clientes (
+    id_cliente INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    id_usuario BIGINT NOT NULL UNIQUE, 
+    endereco VARCHAR(30),
+    bairro VARCHAR(30),
+    cidade VARCHAR(30),
+    uf VARCHAR(2),
+    cep VARCHAR(8),
+    celular VARCHAR(20),
+    usuario_cad VARCHAR(20),
+    usuario_alt VARCHAR(20),
+
+    FOREIGN KEY (id_usuario) REFERENCES usuarios(id) ON DELETE CASCADE
 );
 
 -- PRODUTOS --
@@ -32,24 +60,6 @@ CREATE TABLE produtos (
    usuario_alt VARCHAR(20)
 );
 
--- CLIENTES --
-CREATE TABLE clientes (
-    id_cliente INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
-    nome varchar(30),
-    endereco varchar(30),
-    bairro varchar(30),
-    cidade varchar(30),
-    uf varchar(2),
-    cep varchar(8),
-    celular varchar(20),
-    email varchar(30),
-    datcad date,
-    datalt date,
-    usuario_cad VARCHAR(20),
-    usuario_alt VARCHAR(20),
-    ativo enum('true', 'false') not null
-);
-
 -- PEDIDOS --
 CREATE TABLE pedidos (
 	id_pedido INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
@@ -60,31 +70,7 @@ CREATE TABLE pedidos (
 	finalizado varchar(1),
 	numnf int (10),
 	datnf date,
-	estado varchar(1)
-);
-
--- VENDEDORES --
-CREATE TABLE vendedores (
-    id_vendedor INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
-    nome varchar(30),
-    email varchar(30),
-    celular varchar(30),
-    atuacao varchar(2),
-    comissao double(7,2),
-    status varchar(1)
-);
-
--- OBSERVAÇÕES -- 
-CREATE TABLE observacoes (
-    id_observacao INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
-    tipo_reclamente varchar(1),
-    reclamado int,
-    reclamente int,
-    ocorrencia int (3),
-    observacao varchar(600),
-    data date,
-    retorno varchar(1),
-    data_retorno date
+	status varchar(1)
 );
 
 -- DETALHES DO PEDIDO --
@@ -101,6 +87,19 @@ CREATE TABLE pedido_detalhe (
 	FOREIGN KEY (codprod) REFERENCES produtos(id_produto)
 );
 
+-- OBSERVAÇÕES -- 
+CREATE TABLE observacoes (
+    id_observacao INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    tipo_reclamente varchar(1),
+    reclamado int,
+    reclamente int,
+    ocorrencia int (3),
+    observacao varchar(600),
+    data date,
+    retorno varchar(1),
+    data_retorno date
+);
+
 -- INSERIR PRODUTO --
 INSERT INTO produtos (cod_prod, descricao, descricao_resumida, unidade, valor, ipi, qtde_min, datcad, datalt, usuario_cad, usuario_alt) VALUES 
 ("2", "Camisa Regata", "Camisa Regata", 2, 45.3, 2.4, 10, CURDATE(),CURDATE(), USER(), USER()),
@@ -112,6 +111,7 @@ INSERT INTO produtos (cod_prod, descricao, descricao_resumida, unidade, valor, i
 ("8", "Óculos de Sol", "Óculos", 1, 99.99, 3.5, 5, CURDATE(), CURDATE(), USER(), USER()),
 ("9", "Camiseta Algodão", "Camiseta", 2, 39.99, 2.0, 20, CURDATE(), CURDATE(), USER(), USER());
 
+/*
 -- INSERIR CLIENTE --
 INSERT INTO clientes (nome, endereco, bairro, cidade, uf, cep, celular, email, datcad, datalt, usuario_cad, usuario_alt, ativo) VALUES  
 ("Pedro da Silva", "rua do Pedro, 23", "Bar Pedro", "Sao Paulo", "SP", "09203030", "11-32429032", "pedro@email.com", CURDATE(), CURDATE(), "admin", "admin", "true"),  
@@ -122,9 +122,10 @@ INSERT INTO clientes (nome, endereco, bairro, cidade, uf, cep, celular, email, d
 ("Fernanda Almeida", "Av. Paulista, 1000", "Bela Vista", "São Paulo", "SP", "01311000", "11-976543210", "fernanda@email.com", CURDATE(), CURDATE(), "admin", "admin", "true"),  
 ("Lucas Ferreira", "Rua das Acácias, 32", "Botafogo", "Rio de Janeiro", "RJ", "22290050", "21-998866554", "lucas@email.com", CURDATE(), CURDATE(), "admin", "admin", "true"),  
 ("Beatriz Santos", "Av. Sete de Setembro, 76", "Barra", "Salvador", "BA", "40130000", "71-977665544", "beatriz@email.com", CURDATE(), CURDATE(), "admin", "admin", "true");  
+*/
 
 -- INSERIR PEDIDO --
-INSERT INTO pedidos (datped, numped, codcli, codven, estado) VALUES 
+INSERT INTO pedidos (datped, numped, codcli, codven, status) VALUES 
 ('2023-11-15', 2, 3, 1, 'P'),
 ('2023-10-12', 3, 5, 2, 'P'),
 ('2024-02-28', 4, 2, 3, 'C'),
@@ -163,8 +164,10 @@ SELECT p.numped, pd.numped, p.codcli, p.codven, pd.codprod FROM pedidos p INNER 
 
 -- DICAS --
 
--- SELECT * FROM usuarios;
+SELECT * FROM usuarios;
 -- DROP TABLE usuarios;
+
+-- SELECT * from vendedores;
 
 -- SELECT * from clientes;
 -- ALTER TABLE clientes MODIFY COLUMN cep VARCHAR(8);

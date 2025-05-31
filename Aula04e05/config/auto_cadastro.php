@@ -17,7 +17,7 @@ if ($consulta && mysqli_num_rows($consulta) == 0) {
     // Data do cadastro e valores padrão
     $data_cad = date('Y-m-d');
     $ativo = "true";
-    $nivel = 1;
+    $nivel = 3;
 
     // Inserir no banco de dados
     $query = "INSERT INTO usuarios (nome, email, email_recup, senha, data_cad, ativo, nivel) 

@@ -1,51 +1,53 @@
+<?php
+include_once("config/config.php");
+
+$login_cookie = isset($_COOKIE["login"]) ? $_COOKIE["login"] : null;
+$tema = "tema-claro"; // Tema padrão
+$usuario_logado = false;
+$cookie_invalido = false;
+
+if ($login_cookie) {
+    $consulta = mysqli_query($conexao, "SELECT * FROM usuarios WHERE email = '$login_cookie'");
+    if ($consulta && mysqli_num_rows($consulta) > 0) {
+        $usuario = mysqli_fetch_assoc($consulta);
+        $nome = htmlspecialchars($usuario["nome"]);
+        $tema = "tema-escuro";
+        $usuario_logado = true;
+    } else {
+        $cookie_invalido = true;
+    }
+}
+?>
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Bem-Vindo</title>
-    <!-- Incluindo o arquivo CSS -->
-    <link rel="stylesheet" href="style/index.css">
+    <link rel="stylesheet" href="./style/index.css">
 </head>
-<body>
+<body class="<?php echo $tema; ?>">
     <div class="container">
-        <?php
-        include_once("config/config.php"); // Inclui o arquivo de configuração do banco de dados
-
-        // Verifica se o cookie de login existe
-        $login_cookie = isset($_COOKIE["login"]) ? $_COOKIE["login"] : null;
-
-        if ($login_cookie) {
-            // Valida o cookie contra o banco de dados
-            $consulta = mysqli_query($conexao, "SELECT * FROM usuarios WHERE email = '$login_cookie'");
-            if ($consulta && mysqli_num_rows($consulta) > 0) {
-                // Recupera os dados do usuário
-                $usuario = mysqli_fetch_assoc($consulta);
-                $nome = htmlspecialchars($usuario["nome"]); // Nome do usuário
-
-                // Exibe boas-vindas ao usuário
-                echo "<p> Bem-Vindo, $nome! </p>"; 
-                echo "<p> Você <font color='green'>PODE</font> acessar as informações.</p>";
-
-                // Botões CRUD + Cadastro de Cliente + Logout
-                echo "<div class='buttons'>";
-                echo "<a href='./client/criar.php'><button>Criar Usuário</button></a>";
-                echo "<a href='./client/listar.php'><button>Listar Usuários</button></a>";
-                echo "<a href='./client/atualizar.php'><button>Atualizar Usuário</button></a>";
-                echo "<a href='./client/deletar.php'><button>Deletar Usuário</button></a>";
-                echo "<a href='./client/logout.php'><button class='logout-btn'>Logout</button></a>";
-                echo "</div>";
-            } else {
-                // Cookie inválido ou usuário não encontrado
-                echo "<p>Cookie inválido ou expirado. <a href='admin/login.php'>Faça Login</a> novamente.</p>";
-            }
-        } else {
-            // Cookie não existe
-            echo "<p>Bem-Vindo, convidado! </p>"; 
-            echo "<p> Você <font color='red'>NÃO PODE</font> acessar as informações.</p>";
-            echo "<a href='admin/login.php'>Faça Login</a> para ler o conteúdo.";
-        }
-        ?>
+        <?php if ($usuario_logado): ?>
+           <p> Bem-vindo, <?php echo $nome; ?>!</p>
+            <p>Você tem acesso às informações de <font color='green'>ADMINISTRADOR</font>.</p>
+            <div class="buttons">
+                <a href="./client/criar.php"><button>Criar Usuários</button></a>
+                <a href="./client/listar.php"><button>Listar Usuários</button></a>
+                <a href="./client/atualizar.php"><button>Atualizar Usuários</button></a>
+                <a href="./client/deletar.php"><button>Desativar Usuários</button></>
+            </div>
+            <div class="logout-container">
+                <a href="./client/logout.php"><button class="logout-btn">Logout</button></a>
+            </div>
+        <?php elseif ($cookie_invalido): ?>
+            <p>Cookie inválido ou expirado.</p>
+            <a href='admin/login.php'>Faça Login</a> novamente.
+        <?php else: ?>
+            <p>Bem-Vindo, convidado!</p>
+            <p>Você <font color='red'>NÃO PODE</font> acessar as informações.</p>
+            <a href='admin/login.php'>Faça Login</a> para ler o conteúdo.
+        <?php endif; ?>
     </div>
 </body>
 </html>

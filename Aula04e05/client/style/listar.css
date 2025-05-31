@@ -1,8 +1,8 @@
 /* Estilos gerais */
 body {
     font-family: Arial, sans-serif;
-    background-color: #f4f4f9;
-    color: #333;
+    background-color: #121212; /* Preto quase puro */
+    color: #ffffff; /* Texto branco */
     margin: 0;
     padding: 0;
     display: flex;
@@ -13,9 +13,9 @@ body {
 
 /* Caixa centralizada */
 .container {
-    background: #ffffff;
+    background: #1e1e1e; /* Cinza escuro */
     border-radius: 8px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 4px 6px rgba(255, 255, 255, 0.1);
     padding: 20px;
     width: 600px;
     text-align: center;
@@ -24,22 +24,36 @@ body {
 /* Título */
 h2 {
     margin-bottom: 20px;
+    color: #ffffff; /* Texto branco */
 }
 
 /* Estilo da tabela */
 table {
     width: 100%;
     border-collapse: collapse;
+    color: #ffffff; /* Texto branco */
 }
 
 th, td {
     padding: 10px;
-    border-bottom: 1px solid #ccc;
+    border-bottom: 1px solid #555555; /* Cinza médio */
 }
 
 th {
-    background-color: #007BFF;
+    background-color: #333333; /* Cinza escuro */
     color: white;
+}
+
+/* Link "Desativar" com estilo cinza claro */
+a.desativar-link {
+    color: #cccccc; /* Cinza claro */
+    text-decoration: none;
+    font-weight: bold;
+}
+
+a.desativar-link:hover {
+    color: #ffffff; /* Branco no hover para destaque */
+    text-decoration: underline;
 }
 
 /* Link "Voltar" */
@@ -47,7 +61,7 @@ a.voltar {
     display: block;
     margin-top: 15px;
     font-size: 16px;
-    color: #007BFF;
+    color: #bbbbbb; /* Cinza claro */
     text-decoration: none;
     font-weight: bold;
 }

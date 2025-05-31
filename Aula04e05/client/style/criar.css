@@ -1,8 +1,9 @@
+
 /* Estilos gerais */
 body {
     font-family: Arial, sans-serif;
-    background-color: #f4f4f9;
-    color: #333;
+    background-color: #121212; /* Preto quase puro */
+    color: #ffffff;
     margin: 0;
     padding: 0;
     display: flex;
@@ -13,47 +14,94 @@ body {
 
 /* Caixa centralizada */
 .container {
-    background: #ffffff;
+    background: #1e1e1e; /* Cinza escuro */
     border-radius: 8px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 4px 6px rgba(255, 255, 255, 0.1);
     padding: 20px;
     width: 500px;
     text-align: center;
 }
 
+.container #camposCliente, .container #camposVendedor {
+    background: #1e1e1e; /* Cinza escuro */
+    padding: 20px;
+    width: 500px;
+}
+
 /* Título */
 h2 {
     margin-bottom: 20px;
+    color: #ffffff; /* Verde acinzentado */
 }
 
-/* Ajustes nos formulários */
-form {
+/* Formulário */
+form, #camposCliente, #camposVendedor {
     display: flex;
     flex-direction: column;
-    gap: 15px; /* Espaçamento entre os inputs */
-    padding: 15px; /* Adicionado espaçamento interno ao formulário */
+    gap: 15px;
+    padding: 15px;
+    align-items: center;
 }
 
+/* Grupo de campos */
+.form-group {
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Centraliza os textos */
+    gap: 5px;
+    width: 100%;
+    margin-bottom: 15px;
+}
+
+/* Rótulos */
 form label {
     font-size: 16px;
     font-weight: bold;
+    color: #dedfde; /* Verde acinzentado */
+    text-align: center; /* Centraliza o texto do label */
+    width: 100%;
 }
 
-form input {
-    padding: 10px;
-    width: calc(100% - 20px); /* Adicionado margem interna para evitar colar na borda */
+/* Inputs e selects */
+form input,
+form select {
+    padding: 12px;
+    width: 100%;
     font-size: 16px;
     border-radius: 5px;
-    border: 1px solid #ccc;
+    border: 1px solid #555555; /* Cinza médio */
+    box-sizing: border-box;
+    background-color: #333333; /* Cinza escuro */
+    color: #ffffff;
 }
 
 /* Botão de envio */
 form input[type="submit"] {
-    width: 100%;
-    margin-top: 20px;
+    background-color: #555555; /* Cinza médio */
+    color: white;
+    border: none;
+    border-radius: 5px;
+    margin-top: 10px;
     padding: 12px;
     font-size: 18px;
     cursor: pointer;
+}
+
+form input[type="submit"]:hover {
+    background-color: #777777; /* Cinza mais claro */
+}
+
+/* Mensagens de resposta */
+.success-message {
+    color: #a5d6a7; /* Verde acinzentado */
+    font-weight: bold;
+    margin-top: 15px;
+}
+
+.error-message {
+    color: #ff6b6b; /* Vermelho suave */
+    font-weight: bold;
+    margin-top: 15px;
 }
 
 /* Link "Voltar" */
@@ -61,7 +109,7 @@ a.voltar {
     display: block;
     margin-top: 15px;
     font-size: 16px;
-    color: #007BFF;
+    color: #bbbbbb; /* Cinza claro */
     text-decoration: none;
     font-weight: bold;
 }

@@ -1,8 +1,9 @@
+
 /* Estilos gerais */
 body {
     font-family: Arial, sans-serif;
-    background-color: #f4f4f9;
-    color: #333;
+    background-color: #121212; /* Preto quase puro */
+    color: #ffffff; 
     margin: 0;
     padding: 0;
     display: flex;
@@ -13,17 +14,17 @@ body {
 
 /* Caixa centralizada */
 .container {
-    background: #ffffff;
+    background: #1e1e1e; /* Cinza escuro */
     border-radius: 8px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    padding: 20px;
-    max-width: 500px; /* Ajustado para caber os botões */
+    box-shadow: 0 4px 6px rgba(255, 255, 255, 0.1);
+    padding: 30px;
+    max-width: 600px;
     text-align: center;
 }
 
 /* Links */
 a {
-    color: #007BFF;
+    color: #bbbbbb; /* Cinza claro */
     text-decoration: none;
     font-weight: bold;
 }
@@ -35,30 +36,74 @@ a:hover {
 /* Texto personalizado */
 font[color="red"] {
     font-weight: bold;
-    color: red;
+    color: #ff6b6b; /* Vermelho suave */
 }
 
-/* Botões CRUD + Logout */
+font[color="green"] {
+    font-weight: bold;
+    color: #a5d6a7; /* Verde acinzentado */
+}
+
+/* Botões CRUD organizados em linha única */
 .buttons {
     display: flex;
-    flex-wrap: wrap;
-    gap: 10px; /* Espaçamento entre os botões */
-    justify-content: center; /* Centraliza os botões */
-    margin-top: 20px; /* Espaçamento superior */
+    justify-content: space-between;
+    gap: 10px;
+    flex-wrap: nowrap;
+    margin-top: 20px;
 }
 
+/* Ajuste para largura uniforme dos botões CRUD */
 .buttons a button {
     padding: 10px 15px;
     font-size: 16px;
     cursor: pointer;
+    background-color: #333333; /* Cinza médio */
+    color: white;
+    border: none;
+    border-radius: 5px;
+    width: 120px;
 }
 
-/* Botão de Logout */
+.buttons a button:hover {
+    background-color: #555555; /* Cinza mais claro */
+}
+
+/* Botão de Logout centralizado abaixo */
+.logout-container {
+    margin-top: 40px;
+    text-align: center;
+}
+
 .logout-btn {
-    background-color: red;
+    background-color: #ff6b6b; /* Vermelho suave */
     color: white;
     border: none;
     padding: 10px 15px;
     font-size: 16px;
     cursor: pointer;
+    border-radius: 5px;
+    width: 120px;
+}
+
+.logout-btn:hover {
+    background-color: #ff4c4c; /* Vermelho mais forte */
+}
+
+/* Tema claro (visitantes) */
+.tema-claro {
+    background-color: #f4f4f9;
+}
+
+.tema-claro .container {
+    background-color: #ffffff; /* Fundo branco */
+    color: #000000; /* Texto preto */
+}
+
+.tema-claro a {
+    color: #1e90ff; /* Azul */
+}
+
+.tema-claro a:hover {
+    text-decoration: underline;
 }

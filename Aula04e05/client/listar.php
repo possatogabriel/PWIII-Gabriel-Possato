@@ -6,12 +6,22 @@ if (!$conexao) {
     die("Erro na conexão: " . mysqli_connect_error());
 }
 
-// Consulta clientes ativos
-$query = "SELECT id_cliente, nome, email FROM clientes WHERE ativo = 'true'";
+// Consulta apenas usuários ATIVOS
+$query = "SELECT u.id, u.nome, u.email, u.nivel FROM usuarios u WHERE u.ativo = 'true'";
 $result = mysqli_query($conexao, $query);
 
 if (!$result) {
     die("Erro na consulta ao banco de dados: " . mysqli_error($conexao));
+}
+
+// Função para definir a cor do nível
+function corNivel($nivel) {
+    switch ($nivel) { 
+        case 1: return "#2a71bd"; // Azul médio (Blue 400) — visível e vibrante
+        case 2: return "#11d151"; // Verde médio (Green 400) — mais forte que o anterior
+        case 3: return "#e0e0e0"; // Cinza claro — para "outro"
+        default: return "#bdbdbd"; // Cinza médio — fallback
+    }
 }
 ?>
 
@@ -19,34 +29,36 @@ if (!$result) {
 <html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
-    <title>Listar Clientes</title>
+    <title>Listar Usuários</title>
     <link rel="stylesheet" href="style/listar.css">
 </head>
 <body>
     <div class="container">
-        <h2>Listar Clientes</h2>
+        <h2>Listar Usuários</h2>
         <table>
             <thead>
                 <tr>
                     <th>ID</th>
                     <th>Nome</th>
                     <th>Email</th>
+                    <th>Nível</th>
                     <th>Ações</th>
                 </tr>
             </thead>
             <tbody>
                 <?php
                 if (mysqli_num_rows($result) > 0) {
-                    while ($cliente = mysqli_fetch_assoc($result)) {
+                    while ($usuario = mysqli_fetch_assoc($result)) {
                         echo "<tr>";
-                        echo "<td>" . htmlspecialchars($cliente['id_cliente']) . "</td>";
-                        echo "<td>" . htmlspecialchars($cliente['nome']) . "</td>";
-                        echo "<td>" . htmlspecialchars($cliente['email']) . "</td>";
-                        echo "<td><a href='./deletar.php?id_cliente=" . $cliente['id_cliente'] . "' onclick='return confirm(\"Tem certeza que deseja desativar este cliente?\")'>Desativar</a></td>";
+                        echo "<td>" . htmlspecialchars($usuario['id']) . "</td>";
+                        echo "<td>" . htmlspecialchars($usuario['nome']) . "</td>";
+                        echo "<td>" . htmlspecialchars($usuario['email']) . "</td>";
+                        echo "<td style='color:" . corNivel($usuario['nivel']) . "; font-weight: bold;'>" . htmlspecialchars($usuario['nivel']) . "</td>";
+                        echo "<td><a class='desativar-link' href='./deletar.php?id_usuario=" . $usuario['id'] . "&email=" . urlencode($usuario['email']) . "' onclick='return confirm(\"Tem certeza que deseja desativar este usuário?\")'>Desativar</a></td>";
                         echo "</tr>";
                     }
                 } else {
-                    echo "<tr><td colspan='4'>Nenhum cliente ativo encontrado.</td></tr>";
+                    echo "<tr><td colspan='5'>Nenhum usuário ativo encontrado.</td></tr>";
                 }
                 ?>
             </tbody>

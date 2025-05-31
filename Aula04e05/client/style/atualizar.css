@@ -1,8 +1,9 @@
+
 /* Estilos gerais */
 body {
     font-family: Arial, sans-serif;
-    background-color: #f4f4f9;
-    color: #333;
+    background-color: #121212; /* Preto quase puro */
+    color: #ffffff; /* Texto branco */
     margin: 0;
     padding: 0;
     display: flex;
@@ -13,43 +14,57 @@ body {
 
 /* Caixa centralizada */
 .container {
-    background: #ffffff;
+    background: #1e1e1e; /* Cinza escuro */
     border-radius: 8px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 4px 6px rgba(255, 255, 255, 0.1);
     padding: 20px;
     width: 500px;
     text-align: center;
 }
 
+.container #camposCliente, .container #camposVendedor {
+    background: #1e1e1e; /* Cinza escuro */
+    padding: 20px;
+    width: 500px;
+}
+
 /* Título */
 h2 {
     margin-bottom: 20px;
+    color: #ffffff; /* Texto branco */
 }
 
 /* Ajustes nos formulários */
-form {
+form, #camposCliente, #camposVendedor {
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 15px; /* Espaçamento entre os campos */
+    gap: 15px;
 }
 
-form label {
+form label, #camposCliente label, #camposVendedor label {
     font-size: 16px;
     font-weight: bold;
-    text-align: left;
+    color: #ffffff; /* Texto branco */
+    text-align: left; /* Alinha à esquerda */
 }
 
-form input {
+form input, #camposCliente input, #camposVendedor input {
     width: 100%;
     padding: 10px;
     font-size: 16px;
     border-radius: 5px;
-    border: 1px solid #ccc;
+    border: 1px solid #555555; /* Cinza médio */
+    background-color: #333333; /* Cinza escuro */
+    color: #ffffff; /* Texto branco */
 }
 
 /* Botão de envio */
 form input[type="submit"] {
+    background-color: #333333; /* Cinza médio */
+    color: white;
+    border: none;
+    border-radius: 5px;
     width: 100%;
     margin-top: 20px;
     padding: 12px;
@@ -57,12 +72,16 @@ form input[type="submit"] {
     cursor: pointer;
 }
 
+form input[type="submit"]:hover {
+    background-color: #555555; /* Cinza mais claro */
+}
+
 /* Link "Voltar" */
 a.voltar {
     display: block;
     margin-top: 15px;
     font-size: 16px;
-    color: #007BFF;
+    color: #bbbbbb; /* Cinza claro */
     text-decoration: none;
     font-weight: bold;
 }
