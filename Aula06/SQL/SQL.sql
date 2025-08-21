@@ -13,7 +13,7 @@ CREATE TABLE carros(
 );
 
 ALTER TABLE carros
-ADD COLUMN valor double (10,2),
-ADD COLUMN cor varchar(15);
+ADD COLUMN valor double (10,2) AFTER placa,
+ADD COLUMN cor varchar(15) AFTER valor;
 
 -- SELECT * FROM carros;
