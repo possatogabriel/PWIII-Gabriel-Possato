@@ -12,4 +12,8 @@ CREATE TABLE carros(
     PRIMARY KEY (id)
 );
 
+ALTER TABLE carros
+ADD COLUMN valor double (10,2),
+ADD COLUMN cor varchar(15);
+
 -- SELECT * FROM carros;

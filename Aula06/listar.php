@@ -5,7 +5,7 @@ if (!$conexao) {
     die("Erro na conexão: " . mysqli_connect_error());
 }
 
-$query = "SELECT id, modelo, ano, placa, data_cadastro FROM carros ORDER BY data_cadastro DESC";
+$query = "SELECT id, modelo, ano, placa, cor, valor, data_cadastro FROM carros ORDER BY data_cadastro DESC";
 $result = mysqli_query($conexao, $query);
 
 if (!$result) {
@@ -30,6 +30,8 @@ if (!$result) {
                     <th>Modelo</th>
                     <th>Ano</th>
                     <th>Placa</th>
+                    <th>Cor</th>
+                    <th>Valor</th>
                     <th>Data de Cadastro</th>
                 </tr>
             </thead>
@@ -42,11 +44,13 @@ if (!$result) {
                         echo "<td>" . htmlspecialchars($usuario['modelo']) . "</td>";
                         echo "<td>" . htmlspecialchars($usuario['ano']) . "</td>";
                         echo "<td>" . htmlspecialchars($usuario['placa']) . "</td>";
+                        echo "<td>" . htmlspecialchars($usuario['cor']) . "</td>";
+                        echo "<td>" . htmlspecialchars($usuario['valor']) . "</td>";
                         echo "<td>" . htmlspecialchars(date('d/m/Y H:i', strtotime($usuario['data_cadastro']))) . "</td>";
                         echo "</tr>";
                     }
                 } else {
-                    echo "<tr><td colspan='5'>Nenhum veículo cadastrado.</td></tr>";
+                    echo "<tr><td colspan='7'>Nenhum veículo cadastrado.</td></tr>";
                 }
                 ?>
             </tbody>

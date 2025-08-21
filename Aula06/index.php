@@ -6,6 +6,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $modelo = mysqli_real_escape_string($conexao, $_POST['modelo']);
     $ano = mysqli_real_escape_string($conexao, $_POST['ano']);
     $placa = mysqli_real_escape_string($conexao, $_POST['placa']);
+    $cor = mysqli_real_escape_string($conexao, $_POST['cor']);
+    $valor = mysqli_real_escape_string($conexao, $_POST['valor']);
     $data_cadastro = date('Y-m-d H:i:s'); // Data e hora atual
 
     // Verifica se a placa já existe
@@ -16,8 +18,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         echo "<script>alert('Erro: Esta placa já está cadastrada.'); window.location.href='index.php';</script>";
     } else {
         // Monta a query de inserção
-        $query = "INSERT INTO carros (modelo, ano, placa, data_cadastro) 
-                  VALUES ('$modelo', '$ano', '$placa', '$data_cadastro')";
+        $query = "INSERT INTO carros (modelo, ano, placa, cor, valor, data_cadastro) 
+                  VALUES ('$modelo', '$ano', '$placa', '$cor', '$valor', '$data_cadastro')";
 
         // Executa a query
         if (mysqli_query($conexao, $query)) {
@@ -53,6 +55,16 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             <div class="form-group">
                 <label for="placa">Placa:</label>
                 <input type="text" id="placa" name="placa" minlength="10" maxlength="10" required>
+            </div>
+
+            <div class="form-group">
+                <label for="cor">Cor:</label>
+                <input type="text" id="cor" name="cor" maxlength="15" required>
+            </div>
+
+            <div class="form-group">
+                <label for="placa">Valor:</label>
+                <input type="text" id="valor" name="valor" maxlength="10" required>
             </div>
             <input type="submit" value="Cadastrar">
         </form>
