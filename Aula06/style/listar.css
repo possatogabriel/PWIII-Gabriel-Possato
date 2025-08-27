@@ -54,15 +54,12 @@ tbody tr:hover {
     background-color: #3a3a3a;
 }
 
-/* Link de ação */
-.desativar-link {
-    color: #ff6b6b;
-    text-decoration: none;
+/* Data atual */
+.data-atual {
     font-weight: bold;
-}
-
-.desativar-link:hover {
-    text-decoration: underline;
+    margin-bottom: 15px;
+    color: #ffffff;
+    font-size: 16px;
 }
 
 /* Link "Voltar" */
@@ -77,4 +74,45 @@ a.voltar {
 
 a.voltar:hover {
     text-decoration: underline;
+}
+
+/* Link de ação */
+.desativar-link {
+    color: #ff6b6b;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.desativar-link:hover {
+    text-decoration: underline;
+}
+
+/* Estilo para o seletor de cor */
+.color-picker {
+    margin-top: 25px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    font-size: 16px;
+    color: #ffffff;
+}
+
+.color-picker label {
+    font-weight: bold;
+}
+
+.color-picker input[type="color"] {
+    width: 40px;
+    height: 40px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    background-color: transparent;
+    box-shadow: 0 0 5px rgba(255, 255, 255, 0.3);
+    transition: transform 0.2s ease;
+}
+
+.color-picker input[type="color"]:hover {
+    transform: scale(1.1);
 }

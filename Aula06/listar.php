@@ -1,5 +1,5 @@
 <?php
-include_once("config/config.php"); // Conexão com o banco de dados
+include_once("config/config.php");
 
 if (!$conexao) {
     die("Erro na conexão: " . mysqli_connect_error());
@@ -22,6 +22,7 @@ if (!$result) {
 </head>
 <body>
     <div class="container">
+        <p id="data-atual" class="data-atual"></p>
         <h2>Veículos Cadastrados</h2>
         <table>
             <thead>
@@ -57,5 +58,7 @@ if (!$result) {
         </table>
         <a href="index.php" class="voltar">Voltar</a>
     </div>
+
+    <script src="js/tema.js"></script>
 </body>
 </html>

@@ -1,7 +1,6 @@
-/* Estilos gerais */
 body {
     font-family: Arial, sans-serif;
-    background-color: #121212; /* Fundo escuro */
+    background-color: #121212;
     color: #ffffff;
     margin: 0;
     padding: 0;
@@ -11,9 +10,8 @@ body {
     min-height: 100vh;
 }
 
-/* Caixa centralizada */
 .container {
-    background: #1e1e1e; /* Cinza escuro */
+    background: #1e1e1e;
     border-radius: 8px;
     box-shadow: 0 4px 6px rgba(255, 255, 255, 0.1);
     padding: 30px;
@@ -22,13 +20,18 @@ body {
     text-align: center;
 }
 
-/* Título */
+.data-atual {
+    font-weight: bold;
+    margin-bottom: 15px;
+    color: #ffffff;
+    font-size: 16px;
+}
+
 h2 {
     margin-bottom: 20px;
     color: #ffffff;
 }
 
-/* Formulário */
 form {
     display: flex;
     flex-direction: column;
@@ -36,7 +39,6 @@ form {
     align-items: center;
 }
 
-/* Grupo de campos */
 .form-group {
     display: flex;
     flex-direction: column;
@@ -44,7 +46,6 @@ form {
     width: 100%;
 }
 
-/* Rótulos */
 label {
     font-size: 16px;
     font-weight: bold;
@@ -52,7 +53,6 @@ label {
     margin-bottom: 5px;
 }
 
-/* Inputs e selects */
 input,
 select {
     padding: 12px;
@@ -65,7 +65,6 @@ select {
     box-sizing: border-box;
 }
 
-/* Botão de envio */
 input[type="submit"] {
     background-color: #555555;
     color: white;
@@ -82,7 +81,6 @@ input[type="submit"]:hover {
     background-color: #777777;
 }
 
-/* Mensagens de resposta */
 .success-message {
     color: #a5d6a7;
     font-weight: bold;
@@ -95,7 +93,6 @@ input[type="submit"]:hover {
     margin-top: 15px;
 }
 
-/* Link "Voltar" */
 a.voltar {
     display: block;
     margin-top: 20px;
@@ -108,3 +105,34 @@ a.voltar {
 a.voltar:hover {
     text-decoration: underline;
 }
+
+.color-picker {
+    margin-top: 25px;
+    display: flex;
+    justify-content: space-between; /* separa texto à esquerda e botão à direita */
+    align-items: center;
+    width: 100%;
+}
+
+.color-picker label {
+    font-size: 16px;
+    font-weight: bold;
+    color: #dedfde;
+    margin-right: auto; /* empurra o botão para a direita */
+}
+
+.color-picker input[type="color"] {
+    width: 40px;
+    height: 40px;
+    border: none;
+    border-radius: 0; /* quadrado perfeito */
+    cursor: pointer;
+    padding: 0;
+    box-shadow: 0 0 4px rgba(255, 255, 255, 0.3);
+    transition: transform 0.2s ease;
+}
+
+.color-picker input[type="color"]:hover {
+    transform: scale(1.1);
+}
+

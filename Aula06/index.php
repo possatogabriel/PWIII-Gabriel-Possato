@@ -1,27 +1,23 @@
 <?php
-include_once("config/config.php"); // Conexão com o banco de dados
+include_once("config/config.php");
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    // Recebendo os dados do formulário
     $modelo = mysqli_real_escape_string($conexao, $_POST['modelo']);
     $ano = mysqli_real_escape_string($conexao, $_POST['ano']);
     $placa = mysqli_real_escape_string($conexao, $_POST['placa']);
     $cor = mysqli_real_escape_string($conexao, $_POST['cor']);
     $valor = mysqli_real_escape_string($conexao, $_POST['valor']);
-    $data_cadastro = date('Y-m-d H:i:s'); // Data e hora atual
+    $data_cadastro = date('Y-m-d H:i:s');
 
-    // Verifica se a placa já existe
     $verifica = "SELECT id FROM carros WHERE placa = '$placa'";
     $resultado = mysqli_query($conexao, $verifica);
 
     if (mysqli_num_rows($resultado) > 0) {
         echo "<script>alert('Erro: Esta placa já está cadastrada.'); window.location.href='index.php';</script>";
     } else {
-        // Monta a query de inserção
         $query = "INSERT INTO carros (modelo, ano, placa, cor, valor, data_cadastro) 
                   VALUES ('$modelo', '$ano', '$placa', '$cor', '$valor', '$data_cadastro')";
 
-        // Executa a query
         if (mysqli_query($conexao, $query)) {
             echo "<script>alert('Cadastro realizado com sucesso!'); window.location.href='listar.php';</script>";
         } else {
@@ -36,10 +32,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <head>
     <meta charset="UTF-8">
     <title>Cadastrar Veículo</title>
-    <link rel="stylesheet" href="style/criar.css">
+    <link rel="stylesheet" href="style/index.css">
 </head>
 <body>
     <div class="container">
+        <p id="data-atual" class="data-atual"></p>
         <h2>Cadastrar Veículo</h2>
         <form method="POST" action="index.php">
             <div class="form-group">
@@ -63,11 +60,27 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             </div>
 
             <div class="form-group">
-                <label for="placa">Valor:</label>
+                <label for="valor">Valor:</label>
                 <input type="text" id="valor" name="valor" maxlength="10" required>
             </div>
             <input type="submit" value="Cadastrar">
         </form>
+
+    <div class="color-picker">
+        <label for="foreground">Cor do tema (textos e botão):</label>
+        <input type="color" id="foreground" name="foreground" value="#e66465" />
     </div>
+
+    <div class="color-picker">
+        <label for="background">Cor de fundo:</label>
+        <input type="color" id="background" name="background" value="#121212" />
+    </div>
+
+    <div class="color-picker">
+        <label for="containerColor">Cor do container:</label>
+        <input type="color" id="containerColor" name="containerColor" value="#1e1e1e" />
+    </div>
+
+    <script src="js/tema.js"></script>
 </body>
 </html>
