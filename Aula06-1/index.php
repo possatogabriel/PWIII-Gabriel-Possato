@@ -32,9 +32,14 @@
                         <input type = "color" id = "corTexto" value="#ffffff">
                     </div>
                     
-                    <div class = "linha"> 
+                    <div class = "linha">
+                        <p> Alterar cor do painel: </p>
+                        <input type = "color" id = "corPainel" value = "#000000"/>
+                    </div>
+
+                    <div class = "linha">
                         <p> Alterar cor do fundo: </p>
-                        <input type = "color" id = "corFundo" value="#000000">
+                        <input type = "color" id = "corFundo" value = "#ffffff"/>
                     </div>
                 </div>
         </div>
