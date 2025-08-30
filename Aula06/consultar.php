@@ -14,16 +14,23 @@ if (!$result) {
 ?>
 
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html lang="pt-br">
 <head>
     <meta charset="UTF-8">
-    <title>Veículos Cadastrados</title>
-    <link rel="stylesheet" href="style/listar.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel = "stylesheet" href = "CSS/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" rel="stylesheet">
+    <title>Consulta</title>
 </head>
 <body>
-    <div class="container">
-        <p id="data-atual" class="data-atual"></p>
-        <h2>Veículos Cadastrados</h2>
+    <div class = "container">
+        <div class = "texts"> 
+            <p id = "dataAtual"> </p>
+            <h1> Tela de Consulta </h1> 
+        </div>
+
         <table>
             <thead>
                 <tr>
@@ -56,9 +63,10 @@ if (!$result) {
                 ?>
             </tbody>
         </table>
-        <a href="index.php" class="voltar">Voltar</a>
+
+        <a href = "index.html" class = "voltar"> Voltar </a>
     </div>
 
-    <script src="js/tema.js"></script>
+    <script src = "js/script.js"> </script>
 </body>
 </html>

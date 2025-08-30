@@ -1,13 +1,11 @@
 <?php
 
-// Configuração do banco de dados
-$hostname = "localhost";
-$bancodedados = "pwiii_db";
-$usuario = "root";
+$host = "localhost";
+$user = "root";
 $senha = "";
+$database = "pwiii_db";
 
-// Conexão com o banco de dados
-$conexao = new mysqli($hostname, $usuario, $senha, $bancodedados);
+$conexao = new mysqli($host, $user, $senha, $database);
 
 // Verificação de erros
 if ($conexao->connect_errno) {
@@ -16,4 +14,5 @@ if ($conexao->connect_errno) {
 
 // Opcional: Definir o charset da conexão para evitar problemas com caracteres especiais
 $conexao->set_charset("utf8");
+
 ?>
