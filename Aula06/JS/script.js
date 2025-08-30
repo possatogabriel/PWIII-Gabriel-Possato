@@ -37,11 +37,6 @@ window.addEventListener('DOMContentLoaded', function() {
             td.style.color = corTexto;
             td.style.borderColor = corTexto;
         });
-
-        const cabecalhoTabela = document.querySelectorAll('th');
-        if (cabecalhoTabela) cabecalhoTabela.forEach(function(th) {
-            th.style.borderColor = corTexto;
-        });
     }
 
     if (corPainel) {
@@ -51,7 +46,7 @@ window.addEventListener('DOMContentLoaded', function() {
         const inputPainel = document.getElementById('corPainel');
         if (inputPainel) inputPainel.value = corPainel;
 
-        document.querySelectorAll('.linha input').forEach(function(input) {
+        document.querySelectorAll('.linha input[type="text"]').forEach(function(input) {
             input.style.color = corPainel;
         });
 
