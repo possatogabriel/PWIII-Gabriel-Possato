@@ -92,14 +92,43 @@ body {
     gap: 15px;
 }
 
+.mensagem {
+    font-weight: bold;
+    padding: 10px 20px;
+    border-radius: 5px;
+    text-align: center;
+    margin-bottom: 41px;
+}
+
+.erro {
+    background-color: #f9949a;
+    color: #721c24;
+    border: 1px solid transparent;
+}
+
+.sucesso {
+    background-color: #d4edda;
+    color: #155724;
+    border: 1px solid transparent;
+}
+
+.mensagem a {
+    color: #24a241;
+    text-decoration: none;
+}
+
+.mensagem a:hover {
+    text-decoration: underline;
+}
+
 .linha label {
     color: white;
-    width: 100px;
+    width: 130px;
     font-size: larger;
     font-weight: bold;
 }
 
-.linha input[type="text"] {
+.linha input[type="text"], .linha input[type="number"] {
     background-color: white;
     color: black;
     width: 300px;
@@ -107,6 +136,16 @@ body {
     border-radius: 5px;
     border: 1px solid transparent;
     padding: 5px;
+    font-size: larger;
+}
+
+.linha select {
+    background-color: white;
+    color: black;
+    width: 312px;
+    height: 42px;
+    border-radius: 5px;
+    border: 1px solid transparent;
     font-size: larger;
 }
 
@@ -156,7 +195,7 @@ table {
 
 thead tr th, tbody tr td {
     border: 1px solid transparent;
-    width: 150px;
+    width: 130px;
     padding: 10px;
     font-size: large;
 }

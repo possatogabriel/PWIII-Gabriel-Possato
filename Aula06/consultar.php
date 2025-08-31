@@ -5,7 +5,7 @@ if (!$conexao) {
     die("Erro na conexão: " . mysqli_connect_error());
 }
 
-$query = "SELECT id, modelo, ano, placa, cor, valor, data_cadastro FROM carros ORDER BY data_cadastro DESC";
+$query = "SELECT id, modelo, ano, placa, cor, valor, documento, ocorrencia, bloqueio, data_cadastro FROM carros ORDER BY data_cadastro DESC";
 $result = mysqli_query($conexao, $query);
 
 if (!$result) {
@@ -40,6 +40,9 @@ if (!$result) {
                     <th>Placa</th>
                     <th>Cor</th>
                     <th>Valor</th>
+                    <th>Documento</th>
+                    <th>Ocorrência</th> 
+                    <th>Bloqueio</th>
                     <th>Data de Cadastro</th>
                 </tr>
             </thead>
@@ -54,6 +57,27 @@ if (!$result) {
                         echo "<td>" . htmlspecialchars($usuario['placa']) . "</td>";
                         echo "<td>" . htmlspecialchars($usuario['cor']) . "</td>";
                         echo "<td>" . htmlspecialchars($usuario['valor']) . "</td>";
+                        echo "<td>" . htmlspecialchars($usuario['documento']) . "</td>";
+                        if ($usuario['ocorrencia'] == 1) {
+                            echo "<td>Nenhuma</td>";
+                        } elseif ($usuario['ocorrencia'] == 2) {
+                            echo "<td>Colisão LEVE</td>";
+                        } elseif ($usuario['ocorrencia'] == 3) {
+                            echo "<td>Colisão MÉDIA</td>";
+                        } elseif ($usuario['ocorrencia'] == 4) {
+                            echo "<td>Colisão GRAVE</td>";
+                        } elseif ($usuario['ocorrencia'] == 5) {
+                            echo "<td>Roubo SEM recuperação</td>";
+                        } elseif ($usuario['ocorrencia'] == 6) {
+                            echo "<td>Roubo COM recuperação</td>";
+                        } elseif ($usuario['ocorrencia'] == 7) {
+                            echo "<td>Desastre natural COM recuperação</td>";
+                        } elseif ($usuario['ocorrencia'] == 8) {
+                            echo "<td>Desastre natural SEM recuperação</td>";
+                        } else {
+                            echo "<td>Desconhecida</td>"; 
+                        }
+                        echo "<td>" . htmlspecialchars($usuario['bloqueio']) . "</td>";
                         echo "<td>" . htmlspecialchars(date('d/m/Y H:i', strtotime($usuario['data_cadastro']))) . "</td>";
                         echo "</tr>";
                     }
@@ -64,7 +88,7 @@ if (!$result) {
             </tbody>
         </table>
 
-        <a href = "index.html" class = "voltar"> Voltar </a>
+        <a href = "../Aula06" class = "voltar"> Voltar </a>
     </div>
 
     <script src = "js/script.js"> </script>

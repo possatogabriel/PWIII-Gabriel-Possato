@@ -22,11 +22,22 @@ window.addEventListener('DOMContentLoaded', function() {
         document.querySelectorAll('.linha input').forEach(function(input) {
             input.style.backgroundColor = corTexto;
         });
+        
         const submitBtn = document.querySelector('.container form input[type="submit"]');
         if (submitBtn) submitBtn.style.backgroundColor = corTexto;
 
         const voltarLink = document.querySelector('.voltar');
         if (voltarLink) voltarLink.style.color = corTexto;
+
+        const botaoSelect = document.querySelectorAll('.linha select');
+        if (botaoSelect) botaoSelect.forEach(function(select) {
+            select.style.backgroundColor = corTexto;
+        });
+
+        const bordaMensagem = document.querySelectorAll('.mensagem');
+        if (bordaMensagem) bordaMensagem.forEach(function(div) {
+            div.style.borderColor = corTexto;
+        });
 
         // ALTERAÇÕES ESPECÍFICAS DO CONSULTAR.PHP
         const fundoThead = document.querySelector('thead');
@@ -46,18 +57,24 @@ window.addEventListener('DOMContentLoaded', function() {
         const inputPainel = document.getElementById('corPainel');
         if (inputPainel) inputPainel.value = corPainel;
 
-        document.querySelectorAll('.linha input[type="text"]').forEach(function(input) {
+        document.querySelectorAll('.linha input[type="text"], .linha input[type="number"]').forEach(function(input) {
             input.style.color = corPainel;
         });
 
         const submitBtn = document.querySelector('.container form input[type="submit"]');
         if (submitBtn) submitBtn.style.color = corPainel;
 
+        const textoSelect = document.querySelectorAll('.linha select');
+        if (textoSelect) textoSelect.forEach(function(select) {
+            select.style.color = corPainel;
+        });
+
         // ALTERAÇÕES ESPECÍFICAS DO INDEX.HTML
         document.querySelectorAll('.buttons a').forEach(function(btn) {
             btn.style.color = corPainel;
         });
-
+        
+        // ALTERAÇÕES ESPECÍFICAS DO CONSULTAR.PHP
         const corThead = document.querySelector('thead');
         if (corThead) corThead.style.color = corPainel;
     }

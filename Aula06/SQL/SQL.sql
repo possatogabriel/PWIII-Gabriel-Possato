@@ -16,4 +16,9 @@ ALTER TABLE carros
 ADD COLUMN valor double (10,2) AFTER placa,
 ADD COLUMN cor varchar(15) AFTER valor;
 
+ALTER TABLE carros 
+ADD COLUMN documento int(2) AFTER cor,
+ADD COLUMN ocorrencia int(2) AFTER documento,
+ADD COLUMN bloqueio int(1) AFTER ocorrencia;
+
 -- SELECT * FROM carros;

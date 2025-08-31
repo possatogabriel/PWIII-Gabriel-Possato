@@ -7,21 +7,27 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $placa = mysqli_real_escape_string($conexao, $_POST['placa']);
     $cor = mysqli_real_escape_string($conexao, $_POST['cor']);
     $valor = mysqli_real_escape_string($conexao, $_POST['valor']);
+    $documento = mysqli_real_escape_string($conexao, $_POST['documento']);
+    $ocorrencia = mysqli_real_escape_string($conexao, $_POST['ocorrencia']);
+    $bloqueio = mysqli_real_escape_string($conexao, $_POST['bloqueio']);
     $data_cadastro = date('Y-m-d H:i:s');
 
     $verifica = "SELECT id FROM carros WHERE placa = '$placa'";
     $resultado = mysqli_query($conexao, $verifica);
 
     if (mysqli_num_rows($resultado) > 0) {
-        echo "<script>alert('Erro: Esta placa já está cadastrada.'); window.location.href='cadastrar.php';</script>";
+        header("Location: cadastrar.php?erro=placa");
+        exit;
     } else {
-        $query = "INSERT INTO carros (modelo, ano, placa, cor, valor, data_cadastro) 
-                  VALUES ('$modelo', '$ano', '$placa', '$cor', '$valor', '$data_cadastro')";
+        $query = "INSERT INTO carros (modelo, ano, placa, cor, valor, documento, ocorrencia, bloqueio, data_cadastro)
+                  VALUES ('$modelo', '$ano', '$placa', '$cor', '$valor', '$documento', '$ocorrencia', '$bloqueio', '$data_cadastro')";
 
         if (mysqli_query($conexao, $query)) {
-            echo "<script>alert('Cadastro realizado com sucesso!'); window.location.href='consultar.php';</script>";
+            header("Location: cadastrar.php?sucesso=1");
+            exit;
         } else {
-            echo "<script>alert('Erro ao cadastrar: " . mysqli_error($conexao) . "');</script>";
+            header("Location: cadastrar.php?erro=bd");
+            exit;
         }
     }
 }
@@ -45,6 +51,23 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             <h1> Tela de Cadastro </h1> 
         </div>
 
+        <?php if (isset($_GET['sucesso'])): ?>
+            <div class="mensagem sucesso">
+                Cadastro realizado com sucesso! Vá para <a href="consultar.php">tela de consulta</a>!
+            </div>
+
+        <?php elseif (isset($_GET['erro'])): ?>
+            <div class="mensagem erro">
+                <?php
+                    if ($_GET['erro'] == 'placa') {
+                        echo "Erro: Esta placa já está cadastrada.";
+                    } elseif ($_GET['erro'] == 'bd') {
+                        echo "Erro ao cadastrar. Tente novamente.";
+                    }
+                ?>
+            </div>
+        <?php endif; ?>
+
         <form method = "POST" action = "cadastrar.php">
             <div class = "linha"> 
                 <label for = "modelo"> Modelo: </label>
@@ -53,7 +76,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
             <div class = "linha"> 
                 <label for = "ano"> Ano: </label>
-                <input type = "text" id = "ano" name = "ano" minlength="4" maxlength="4" required>
+                <input type = "number" id = "ano" name = "ano" min="1000" max="9999" required>
             </div>
 
             <div class = "linha"> 
@@ -68,11 +91,35 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
             <div class = "linha"> 
                 <label for = "valor"> Valor: </label>
-                <input type = "text" id = "valor" name = "valor" maxlength="10" required>
+                <input type = "number" id = "valor" name = "valor" min="0" max="9999999999" required>
+            </div>
+
+            <div class = "linha"> 
+                <label for = "documento"> Documento: </label>
+                <input type = "number" id = "documento" name = "documento" min="0" max="99" required>
+            </div>
+
+            <div class = "linha"> 
+                <label for = "ocorrencia"> Ocorrência: </label>
+                <select name = "ocorrencia" id = "ocorrencia" required>
+                    <option value = "1"> Nenhuma </option>
+                    <option value = "2"> Colisão LEVE </option> 
+                    <option value = "3"> Colisão MÉDIA </option>
+                    <option value = "4"> Colisão GRAVE </option> 
+                    <option value = "5"> Roubo SEM recuperação </option>
+                    <option value = "6"> Roubo COM recuperação </option> 
+                    <option value = "7"> Desastre natural COM recuperação </option>
+                    <option value = "8"> Desastre natural SEM recuperação </option> 
+                </select>
+            </div>
+
+            <div class = "linha"> 
+                <label for = "bloqueio"> Bloqueio: </label>
+                <input type = "number" id = "bloqueio" name = "bloqueio" min="0" max="1" required>
             </div>
 
             <input type = "submit" value = "Cadastrar">
-            <a href = "index.html" class = "voltar"> Voltar </a>
+            <a href = "../Aula06" class = "voltar"> Voltar </a>
         </form>
     </div>
     <script src = "js/script.js"> </script>
