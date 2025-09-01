@@ -5,7 +5,7 @@ if (!$conexao) {
     die("Erro na conexão: " . mysqli_connect_error());
 }
 
-$query = "SELECT id, modelo, ano, placa, cor, valor, documento, ocorrencia, bloqueio, data_cadastro FROM carros ORDER BY data_cadastro DESC";
+$query = "SELECT * FROM carros ORDER BY data_cadastro DESC";
 $result = mysqli_query($conexao, $query);
 
 if (!$result) {
