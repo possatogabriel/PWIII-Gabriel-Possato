@@ -1,5 +1,11 @@
 <?php
+session_start();
 include_once("config/config.php");
+
+if (!isset($_SESSION['usuario_logado'])) {
+    header("Location: login.php");
+    exit;
+}
 
 if (!$conexao) {
     die("Erro na conexão: " . mysqli_connect_error());
@@ -104,7 +110,7 @@ if (!$result) {
             </tbody>
         </table>
 
-        <a href = "../Aula06" class = "voltar"> Voltar </a>
+        <a href = "../inicio.php" class = "voltar"> Voltar </a>
     </div>
 
     <script src = "js/script.js"> </script>

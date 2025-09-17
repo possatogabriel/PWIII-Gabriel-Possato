@@ -1,48 +1,59 @@
+<?php
+session_start();
+include_once("config/config.php");
+
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    $usuario = trim(mysqli_real_escape_string($conexao, $_POST['usuario']));
+    $senha = trim(mysqli_real_escape_string($conexao, $_POST['senha']));
+
+    $query = "SELECT * FROM usuarios WHERE usuario = '$usuario' AND senha = '$senha'";
+    $resultado = mysqli_query($conexao, $query);
+
+    if (mysqli_num_rows($resultado) == 1) {
+        $_SESSION['usuario_logado'] = $usuario;
+        header("Location: inicio.php");
+        exit;
+    } else {
+        header("Location: login.php?erro=1");
+        exit;
+    }
+}
+?>
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel = "stylesheet" href = "CSS/index.css">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" rel="stylesheet">
-    <title>Webcar</title>
+    <link rel="stylesheet" href="CSS/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter&display=swap" rel="stylesheet">
+    <title>Login - Webcar</title>
 </head>
 <body>
-    <header> 
-        <h1> WEBCAR </h1>
-        
-        <div class = "cabecalho"> 
-            <nav> 
-                <ul>
-                    <li> <a href = "apresentacao.html"> Apresentação </a> </li>
-                    <li> <a href = "funcionamento.html"> Funcionamento </a> </li>
-                    <li> <a href = "suporte.html"> Suporte </a> </li>
-                </ul>
-            </nav>
-
-            <a href = "login.php" class = "login"> Login </a>
+    <div class="container">
+        <div class="texts">
+            <h1>Login</h1>
         </div>
-    </header>
 
-    <main> 
-        <div class = "container">
-            <div class = "background-text">
-                <p> Um sistema web é um software hospedado na internet que pode ser acessado a qualquer momento e lugar através de um navegador (como Chrome, Firefox, etc.), em qualquer dispositivo com conexão à internet... </p>
+        <?php if (isset($_GET['erro'])): ?>
+            <div class="mensagem erro">
+                Usuário ou senha inválidos. Tente novamente.
             </div>
-        </div>
-    </main>
+        <?php endif ?>
 
-    <footer>
-        <nav>
-            <ul>
-                <li> <a href = "?"> Contato </a> </li>
-                <li> <a href = "?"> Redes </a> </li>
-                <li> <a href = "?"> Selos </a> </li>
-                <li> <a href = "?"> Colaboradores </a> </li>
-            </ul>
-        </nav>
-    </footer>
+        <form method="POST" action="login.php">
+            <div class="linha">
+                <label for="usuario">Usuário:</label>
+                <input type="text" id="usuario" name="usuario" required>
+            </div>
+
+            <div class="linha">
+                <label for="senha">Senha:</label>
+                <input type="password" id="senha" name="senha" required>
+            </div>
+
+            <input type="submit" value="Entrar">
+            <a href="index.php" class="voltar">Voltar</a>
+        </form>
+    </div>
 </body>
 </html>

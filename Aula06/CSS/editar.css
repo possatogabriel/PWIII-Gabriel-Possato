@@ -1,0 +1,142 @@
+body {
+    font-family: 'Inter', sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    margin: 0;
+    background: linear-gradient(to right, #dfe4f7, #95abea);
+}
+
+.container {
+    background-color: black;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 20px 100px;
+    border-radius: 10px;
+    margin: 30px;
+}
+
+.texts {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.texts h1 {
+    margin: 0;
+}
+
+.texts p {
+    font-size: 12px;
+    margin: 0;
+}
+
+.mensagem {
+    font-weight: bold;
+    padding: 10px 20px;
+    border-radius: 5px;
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.sucesso {
+    background-color: #d4edda;
+    color: #155724;
+    border: 1px solid transparent;
+}
+
+.erro {
+    background-color: #f9949a;
+    color: #721c24;
+    border: 1px solid transparent;
+}
+
+.mensagem a {
+    color: #24a241;
+    text-decoration: none;
+}
+
+.mensagem a:hover {
+    text-decoration: underline;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+}
+
+.linha {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 10px;
+}
+
+.linha label {
+    color: white;
+    width: 130px;
+    font-size: larger;
+    font-weight: bold;
+}
+
+.linha input[type="text"],
+.linha input[type="number"],
+.linha input[type="password"],
+.linha select {
+    background-color: white;
+    color: black;
+    width: 300px;
+    height: 30px;
+    border-radius: 5px;
+    border: 1px solid transparent;
+    padding: 5px;
+    font-size: larger;
+}
+
+.linha select {
+    width: 312px;
+    height: 42px;
+}
+
+.linha input[type="checkbox"] {
+    margin-right: 300px;
+    height: 30px;
+}
+
+form input[type="submit"] {
+    background-color: white;
+    color: black;
+    font-size: larger;
+    font-weight: bold;
+    text-decoration: none;
+    padding: 15px 0px;
+    margin-top: 30px;
+    width: 400px;
+    text-align: center;
+    border-radius: 5px;
+    border: none;
+    cursor: pointer;
+    transition: transform 0.2s ease;
+}
+
+form input[type="submit"]:hover {
+    transform: scale(1.05);
+}
+
+.voltar {
+    color: white;
+    text-decoration: none;
+    transition: transform 0.2s ease;
+}
+
+.voltar:hover {
+    text-decoration: underline;
+    transform: scale(1.1);
+}

@@ -33,15 +33,13 @@ header nav ul {
     padding: 0;
 }
 
-.cabecalho li, .cabecalho li a, .login {
+.cabecalho li a, .login {
+    background-color: #447bc0;
+    color: white;
     padding: 10px;
     text-decoration: none;
     border-radius: 2px;
-}
-
-.cabecalho li, .cabecalho li a {
-    background-color: #447bc0;
-    color: white;
+    transition: transform 0.2s ease;
 }
 
 .login {
@@ -92,4 +90,6 @@ footer ul li a {
     text-decoration: none;
 }
 
-
+footer ul li a:hover {
+    text-decoration: underline;
+}

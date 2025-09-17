@@ -22,4 +22,14 @@ ADD COLUMN documento int(2) AFTER cor,
 ADD COLUMN ocorrencia int(2) AFTER documento,
 ADD COLUMN bloqueio int(1) AFTER ocorrencia;
 
-SELECT * FROM carros;
+-- SELECT * FROM carros;
+
+CREATE TABLE usuarios(
+	id BIGINT NOT NULL AUTO_INCREMENT,
+    usuario varchar(60) NOT NULL UNIQUE,
+    senha varchar(30) NOT NULL,
+    
+	PRIMARY KEY (id)
+);
+
+INSERT INTO usuarios(usuario, senha) VALUES ('email@email.com', '1234');

@@ -1,5 +1,11 @@
 <?php
+session_start();
 include_once("config/config.php");
+
+if (!isset($_SESSION['usuario_logado'])) {
+    header("Location: login.php");
+    exit;
+}
 
 $dados = null;
 $mensagem = "";
@@ -81,7 +87,7 @@ $conexao->close();
                 <input type="number" id="valorID" name="valorID" required>
             </div>
             <input type="submit" value="Buscar">
-            <a href="../Aula06" class="voltar">Voltar</a>
+            <a href="../inicio.php" class="voltar">Voltar</a>
         </form>
         <?php endif; ?>
 
@@ -144,7 +150,7 @@ $conexao->close();
             </div>
 
             <input type="submit" value="Atualizar">
-            <a href="../Aula06" class="voltar">Voltar</a>
+            <a href="../inicio.php" class="voltar">Voltar</a>
         </form>
         <?php endif; ?>
     </div>

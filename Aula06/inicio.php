@@ -1,3 +1,10 @@
+<?php
+if (!isset($_SESSION['usuario_logado'])) {
+    header("Location: login.php");
+    exit;
+}
+?>
+
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
