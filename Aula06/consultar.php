@@ -39,6 +39,7 @@ if (!$result) {
                     <th>Ano</th>
                     <th>Placa</th>
                     <th>Cor</th>
+                    <th>Com seguro?</th>
                     <th>Valor</th>
                     <th>Documento</th>
                     <th>Ocorrência</th> 
@@ -56,8 +57,16 @@ if (!$result) {
                         echo "<td>" . htmlspecialchars($usuario['ano']) . "</td>";
                         echo "<td>" . htmlspecialchars($usuario['placa']) . "</td>";
                         echo "<td>" . htmlspecialchars($usuario['cor']) . "</td>";
+
+                        if ($usuario['seguro'] == true) {
+                            echo "<td> Sim </td>";
+                        } else {
+                            echo "<td> Não </td>";
+                        }
+
                         echo "<td>" . htmlspecialchars($usuario['valor']) . "</td>";
                         echo "<td>" . htmlspecialchars($usuario['documento']) . "</td>";
+
                         if ($usuario['ocorrencia'] == 1) {
                             echo "<td>Nenhuma</td>";
                         } elseif ($usuario['ocorrencia'] == 2) {
@@ -77,6 +86,13 @@ if (!$result) {
                         } else {
                             echo "<td>Desconhecida</td>"; 
                         }
+
+                        if ($usuario['bloqueio'] == 1) {
+                            echo "<td> Sim </td>";
+                        } else {
+                            echo "<td> Não </td>";
+                        } 
+
                         echo "<td>" . htmlspecialchars($usuario['bloqueio']) . "</td>";
                         echo "<td>" . htmlspecialchars(date('d/m/Y H:i', strtotime($usuario['data_cadastro']))) . "</td>";
                         echo "</tr>";

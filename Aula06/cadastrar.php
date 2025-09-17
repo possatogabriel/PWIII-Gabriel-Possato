@@ -2,10 +2,13 @@
 include_once("config/config.php");
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    $seguro = isset($_POST['seguro']) ? true : false; 
+
     $modelo = mysqli_real_escape_string($conexao, $_POST['modelo']);
     $ano = mysqli_real_escape_string($conexao, $_POST['ano']);
     $placa = mysqli_real_escape_string($conexao, $_POST['placa']);
     $cor = mysqli_real_escape_string($conexao, $_POST['cor']);
+    $seguro = mysqli_real_escape_string($conexao, $_POST['seguro']);
     $valor = mysqli_real_escape_string($conexao, $_POST['valor']);
     $documento = mysqli_real_escape_string($conexao, $_POST['documento']);
     $ocorrencia = mysqli_real_escape_string($conexao, $_POST['ocorrencia']);
@@ -19,8 +22,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         header("Location: cadastrar.php?erro=placa");
         exit;
     } else {
-        $query = "INSERT INTO carros (modelo, ano, placa, cor, valor, documento, ocorrencia, bloqueio, data_cadastro)
-                  VALUES ('$modelo', '$ano', '$placa', '$cor', '$valor', '$documento', '$ocorrencia', '$bloqueio', '$data_cadastro')";
+        $query = "INSERT INTO carros (modelo, ano, placa, cor, seguro, valor, documento, ocorrencia, bloqueio, data_cadastro)
+                  VALUES ('$modelo', '$ano', '$placa', '$cor', '$seguro', '$valor', '$documento', '$ocorrencia', '$bloqueio', '$data_cadastro')";
 
         if (mysqli_query($conexao, $query)) {
             header("Location: cadastrar.php?sucesso=1");
@@ -66,7 +69,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     }
                 ?>
             </div>
-        <?php endif; ?>
+        <?php endif ?>
 
         <form method = "POST" action = "cadastrar.php">
             <div class = "linha"> 
@@ -87,6 +90,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             <div class = "linha"> 
                 <label for = "cor"> Cor: </label>
                 <input type = "text" id = "cor" name = "cor" maxlength="15" required>
+            </div>
+ 
+            <div class = "linha esquerda"> 
+                <label for = "seguro"> Seguro: </label>
+                <input type = "checkbox" id = "seguro" name = "seguro">
             </div>
 
             <div class = "linha"> 

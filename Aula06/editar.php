@@ -10,14 +10,15 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["id"])) {
     $ano        = mysqli_real_escape_string($conexao, $_POST["ano"]);
     $placa      = mysqli_real_escape_string($conexao, $_POST["placa"]);
     $cor        = mysqli_real_escape_string($conexao, $_POST["cor"]);
+    $seguro        = mysqli_real_escape_string($conexao, $_POST["seguro"]);
     $valor      = mysqli_real_escape_string($conexao, $_POST["valor"]);
     $documento  = mysqli_real_escape_string($conexao, $_POST["documento"]);
     $ocorrencia = mysqli_real_escape_string($conexao, $_POST["ocorrencia"]);
     $bloqueio   = mysqli_real_escape_string($conexao, $_POST["bloqueio"]);
 
-    $sql_update = "UPDATE carros SET modelo = ?, ano = ?, placa = ?, cor = ?, valor = ?, documento = ?, ocorrencia = ?, bloqueio = ? WHERE id = ?";
+    $sql_update = "UPDATE carros SET modelo = ?, ano = ?, placa = ?, cor = ?, seguro = ?, valor = ?, documento = ?, ocorrencia = ?, bloqueio = ? WHERE id = ?";
     $stmt_post = $conexao->prepare($sql_update);
-    $stmt_post->bind_param("sissiiiii", $modelo, $ano, $placa, $cor, $valor, $documento, $ocorrencia, $bloqueio, $id);
+    $stmt_post->bind_param("sisssiiiii", $modelo, $ano, $placa, $cor, $seguro, $valor, $documento, $ocorrencia, $bloqueio, $id);
 
     if ($stmt_post->execute()) {
         $mensagem = "<div class='mensagem sucesso'>Dados atualizados com sucesso!</div>";
@@ -111,6 +112,11 @@ $conexao->close();
             <div class="linha">
                 <label for="valor">Valor:</label>
                 <input type="number" id="valor" name="valor" value="<?= $dados['valor'] ?>" min="0" max="9999999999" required>
+            </div>
+
+            <div class = "linha esquerda"> 
+                <label for = "seguro"> Seguro: </label>
+                <input type = "checkbox" id = "seguro" name = "seguro" required>
             </div>
 
             <div class="linha">
