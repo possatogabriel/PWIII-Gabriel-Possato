@@ -62,7 +62,7 @@ $conexao->close();
     <link rel="preconexaoect" href="https://fonts.googleapis.com">
     <link rel="preconexaoect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,14..32,100..900;1,14..32,100..900&display=swap" rel="stylesheet">
-    <title>Edição</title>
+    <title>Webcar</title>
 </head>
 <body>
     <div class="container">
