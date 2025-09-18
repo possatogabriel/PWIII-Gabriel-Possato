@@ -8,15 +8,15 @@ if (!isset($_SESSION['usuario_logado'])) {
 }
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $modelo     = mysqli_real_escape_string($conexao, $_POST['modelo']);
-    $ano        = mysqli_real_escape_string($conexao, $_POST['ano']);
-    $placa      = mysqli_real_escape_string($conexao, $_POST['placa']);
-    $cor        = mysqli_real_escape_string($conexao, $_POST['cor']);
-    $seguro     = isset($_POST['seguro']) ? 1 : 0;
-    $valor      = mysqli_real_escape_string($conexao, $_POST['valor']);
-    $documento  = mysqli_real_escape_string($conexao, $_POST['documento']);
+    $modelo = mysqli_real_escape_string($conexao, $_POST['modelo']);
+    $ano = mysqli_real_escape_string($conexao, $_POST['ano']);
+    $placa = mysqli_real_escape_string($conexao, $_POST['placa']);
+    $cor = mysqli_real_escape_string($conexao, $_POST['cor']);
+    $seguro = isset($_POST['seguro']) ? 1 : 0;
+    $valor = mysqli_real_escape_string($conexao, $_POST['valor']);
+    $documento = mysqli_real_escape_string($conexao, $_POST['documento']);
     $ocorrencia = mysqli_real_escape_string($conexao, $_POST['ocorrencia']);
-    $bloqueio   = mysqli_real_escape_string($conexao, $_POST['bloqueio']);
+    $bloqueio = mysqli_real_escape_string($conexao, $_POST['bloqueio']);
     $data_cadastro = date('Y-m-d H:i:s');
 
     $verifica = "SELECT id FROM carros WHERE placa = '$placa'";
@@ -26,8 +26,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         header("Location: cadastrar.php?erro=placa");
         exit;
     } else {
-        $query = "INSERT INTO carros (modelo, ano, placa, cor, seguro, valor, documento, ocorrencia, bloqueio, data_cadastro)
-                  VALUES ('$modelo', '$ano', '$placa', '$cor', '$seguro', '$valor', '$documento', '$ocorrencia', '$bloqueio', '$data_cadastro')";
+        $query = "INSERT INTO carros (modelo, ano, placa, cor, seguro, valor, documento, ocorrencia, bloqueio, data_cadastro) VALUES ('$modelo', '$ano', '$placa', '$cor', '$seguro', '$valor', '$documento', '$ocorrencia', '$bloqueio', '$data_cadastro')";
 
         if (mysqli_query($conexao, $query)) {
             header("Location: cadastrar.php?sucesso=1");
@@ -39,20 +38,21 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
 }
 ?>
+
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cadastro - Webcar</title>
-    <link rel="stylesheet" href="CSS/style.css">
+    <title>Webcar</title>
+    <link rel="stylesheet" href="CSS/cadastrar.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter&display=swap" rel="stylesheet">
 </head>
 <body>
     <div class="container">
         <div class="texts">
-            <h1>Tela de Cadastro</h1>
             <p id="dataAtual"></p>
+            <h1>Tela de Cadastro</h1>
         </div>
 
         <?php if (isset($_GET['sucesso'])): ?>
@@ -127,7 +127,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             </div>
 
             <input type="submit" value="Cadastrar">
-            <a href="inicio.php" class="voltar">Voltar</a>
+            <a href="../Aula06/inicio.php" class="voltar">Voltar</a>
         </form>
     </div>
     <script src="js/script.js"></script>

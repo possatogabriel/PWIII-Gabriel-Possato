@@ -65,10 +65,8 @@ $conexao->close();
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="CSS/style.css">
-    <link rel="preconexaoect" href="https://fonts.googleapis.com">
-    <link rel="preconexaoect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,14..32,100..900;1,14..32,100..900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="CSS/editar.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter&display=swap" rel="stylesheet">
     <title>Webcar</title>
 </head>
 <body>
@@ -87,7 +85,7 @@ $conexao->close();
                 <input type="number" id="valorID" name="valorID" required>
             </div>
             <input type="submit" value="Buscar">
-            <a href="../inicio.php" class="voltar">Voltar</a>
+            <a href="../Aula06/inicio.php" class="voltar">Voltar</a>
         </form>
         <?php endif; ?>
 
@@ -150,7 +148,7 @@ $conexao->close();
             </div>
 
             <input type="submit" value="Atualizar">
-            <a href="../inicio.php" class="voltar">Voltar</a>
+            <a href="../Aula06/inicio.php" class="voltar">Voltar</a>
         </form>
         <?php endif; ?>
     </div>

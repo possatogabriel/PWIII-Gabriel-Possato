@@ -57,7 +57,7 @@ window.addEventListener('DOMContentLoaded', function() {
         const inputPainel = document.getElementById('corPainel');
         if (inputPainel) inputPainel.value = corPainel;
 
-        document.querySelectorAll('.linha input[type="text"], .linha input[type="number"]').forEach(function(input) {
+        document.querySelectorAll('.linha input[type="text"], .linha input[type="number"], input[type="password"]').forEach(function(input) {
             input.style.color = corPainel;
         });
 

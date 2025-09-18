@@ -1,0 +1,66 @@
+body {
+    font-family: 'Inter', sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    margin: 0;
+}
+
+.container {
+    background-color: black;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 20px 30px;
+    border-radius: 10px;
+}
+
+.texts {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.texts p {
+    font-size: 12px;
+    margin: 0;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    border-radius: 5px;
+    margin: 15px 0px;
+}
+
+th, td {
+    border: 1px solid transparent;
+    width: 140px;
+    padding: 10px;
+    font-size: large;
+}
+
+thead {
+    background-color: white;
+    color: black;
+}
+
+tbody tr td {
+    color: white;
+    border-color: white;
+}
+
+.voltar {
+    color: white;
+    text-decoration: none;
+    transition: transform 0.2s ease;
+}
+
+.voltar:hover {
+    text-decoration: underline;
+    transform: scale(1.1);
+}

@@ -3,8 +3,8 @@ session_start();
 include_once("config/config.php");
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $usuario = trim(mysqli_real_escape_string($conexao, $_POST['usuario']));
-    $senha = trim(mysqli_real_escape_string($conexao, $_POST['senha']));
+    $usuario = mysqli_real_escape_string($conexao, $_POST['usuario']);
+    $senha = mysqli_real_escape_string($conexao, $_POST['senha']);
 
     $query = "SELECT * FROM usuarios WHERE usuario = '$usuario' AND senha = '$senha'";
     $resultado = mysqli_query($conexao, $query);
@@ -19,14 +19,15 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
 }
 ?>
+
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="CSS/style.css">
+    <link rel="stylesheet" href="CSS/login.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter&display=swap" rel="stylesheet">
-    <title>Login - Webcar</title>
+    <title>Webcar</title>
 </head>
 <body>
     <div class="container">
@@ -55,5 +56,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             <a href="index.php" class="voltar">Voltar</a>
         </form>
     </div>
+
+    <script src="js/script.js"></script>
 </body>
 </html>
